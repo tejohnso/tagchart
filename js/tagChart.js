@@ -9,6 +9,7 @@ $(document).ready(function() {
     setEventHandlers();
 
     function setEventHandlers() {
+      $('#topbar').on('click', function() {location.reload();});
       $('#tagHeader').on('click', function() {sortTags(); populateTable();});
       $('#countHeader').on('click', function() {sortCounts(); populateTable();});
       $('#dataChart').on('click', function(event) {
@@ -20,7 +21,8 @@ $(document).ready(function() {
     }
   }
 
-  $(document).foundation();
+  $(document).foundation({tab:{callback:reload}});
+
   $(document.forms[0]).on('submit', function() { $('#go').click(); return false; });
   $('#go').on('click', reload);
   $('#theurl').focus();
