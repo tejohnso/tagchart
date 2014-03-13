@@ -1,6 +1,6 @@
 $(document).ready(function() {
   "use strict";
-  var tagsList, tagsArray, bubbleChart;
+  var tagsList, tagsArray, bubbleChart, tooltipTimeout;
 
   $(document).on('replace', reloadDynamicHTML);
 
@@ -122,12 +122,18 @@ $(document).ready(function() {
     tooltip.id = 'tooltip';
     tooltip.style.top = event.clientY + 'px';
     tooltip.style.left = event.clientX + 'px';
-    tooltip.className = 'tooltip'
+    tooltip.className = 'tooltip';
     tooltip.innerHTML = '<div>' + data.label + '</div><div>' + data.value + '</div>';
     if (document.getElementById('tooltip')) {
       document.body.removeChild(document.getElementById('tooltip'));
     }
+    if (typeof tooltipTimeout !== 'undefined') {clearTimeout(tooltipTimeout);}
     document.body.appendChild(tooltip);
+    tooltipTimeout = setTimeout(function() {
+      $('#tooltip').fadeOut(500, function() {
+        this.remove();
+      });
+    }, 1000);
   }
 
   function populateVis() {
@@ -136,7 +142,7 @@ $(document).ready(function() {
     if (Object.keys(tagsList).length === 0) {return;}
     if (document.getElementById('dataChartCanvas').width === 0) {return;}
 
-    ctx = document.getElementById('dataChartCanvas').getContext('2d')
+    ctx = document.getElementById('dataChartCanvas').getContext('2d');
 
     var chartData = [];
 
