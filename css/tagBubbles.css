@@ -1,0 +1,51 @@
+body {
+  text-align: center;
+  font-family: 'sofia_pro_lightregular', sans;
+  font-size: 1em;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#topbar {
+  text-align: left;
+}
+
+noscript div {
+  position: fixed;
+  width: 100%;
+  padding-top: 1em;
+  top: 0;
+  left: 0;
+  z-index: 999999999;
+  background-color: yellow;
+}
+
+#intro {
+  line-height: 1.2;
+  font-size: 1.3em;
+}
+
+input {
+  font-size: inherit;
+}
+
+textarea {
+  height: auto;
+}
+
+th {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: grey;
+}
+
+.tooltip {
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #aaaaaa;
+  background-color: #cccccc;
+  position: fixed;
+}
