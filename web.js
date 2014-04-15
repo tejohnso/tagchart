@@ -1,19 +1,19 @@
 "use strict";
 var express = require('express')
    ,app = express()
-   ,exec = require('child_process').exec;
+   ,exec = require('child_process').exec
+   ,compress = require('compression')
+   ,bodyParser = require('body-parser');
 
-app.use(express.compress());
+app.use(compress());
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/images'));
 app.use(express.static(__dirname + '/js'));
 app.use(express.static(__dirname + '/html'));
-app.use(express.bodyParser());
+app.use(bodyParser());
 
 app.post('/fetchData', function(req, res) {
-  var fetchCommand = "curl -L -s " + req.body.url +
-                     " |hxpipe |awk '{if (substr($1,1,1) == \"(\" ||" +
-                     " substr($1,1,1) == \"|\") {print substr($1,2)}}'";
+  var fetchCommand = "hxcount " + req.body.url + " | grep --invert / | awk '{$1=$1}1'";
 
   console.log('Attempting fetch from: ' + req.body.url);
 

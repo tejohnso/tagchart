@@ -2,10 +2,11 @@
   "name": "tagbubbles",
   "version": "0.0.1",
   "dependencies": {
-    "express": "x"
+    "express": "4.x",
+    "compression": "x",
+    "body-parser": "x"
   },
   "engines": {
-    "node": "x",
-    "npm": "x"
+    "node": "v0.10.x"
   }
 }
